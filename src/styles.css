@@ -9,6 +9,6 @@
   }
 
   body {
-    @apply h-full min-h-svh bg-neutral-100;
+    @apply h-full min-h-svh bg-white text-primary font-primary;
   }
 }

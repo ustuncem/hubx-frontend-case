@@ -16,6 +16,7 @@
     "lint:typescript": "tsc --noEmit"
   },
   "dependencies": {
+    "prettier-plugin-tailwindcss": "^0.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -32,6 +33,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "path": "^0.12.7",
     "postcss": "^8.4.38",
     "prettier": "^3.2.4",
     "stylelint": "^15.10.2",

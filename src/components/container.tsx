@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 
 interface Props {
-  className: string;
   children: ReactElement;
+  className?: string;
 }
 
 /**
@@ -16,7 +16,7 @@ interface Props {
 export default function Container({ className, children }: Props) {
   return (
     <section
-      className={`max-w-[1200px] w-full mx-auto px-4 flex flex-col items-center justify-center h-full ${className}`}
+      className={`mx-auto flex h-full w-full max-w-[1200px] flex-col items-center justify-center px-4 ${className}`}
     >
       {children}
     </section>

@@ -1,4 +1,8 @@
+import { motion } from 'framer-motion';
+
 import Link, { LinkProps } from './link';
+
+const ANIMATION_DURATION = 0.5; // in seconds
 
 interface FeatureBoxHeaderProps {
   title: string;
@@ -49,14 +53,21 @@ const FeatureBoxImage = ({
   desktopImageUrl,
   alt,
 }: FeatureBoxImageProps) => (
-  <picture>
+  <motion.picture
+    initial={{ y: '100%' }}
+    animate={{ y: 0 }}
+    transition={{
+      duration: ANIMATION_DURATION,
+      delay: ANIMATION_DURATION - 0.2,
+    }}
+  >
     <source srcSet={desktopImageUrl} media="(min-width: 1024px)" />
     <img
       className="w-auto lg:order-1 lg:justify-self-start"
       alt={alt}
       src={mobileImageUrl}
     />
-  </picture>
+  </motion.picture>
 );
 
 /**
@@ -76,8 +87,13 @@ export default function FeatureBox({
   className = '',
 }: FeatureBoxProps) {
   return (
-    <article
-      className={`grid grid-cols-1 place-items-center lg:grid-cols-2 ${className}`}
+    <motion.article
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: ANIMATION_DURATION,
+      }}
+      className={`grid grid-cols-1 place-items-center overflow-hidden lg:grid-cols-2 ${className}`}
     >
       <div className="text-center lg:order-2 lg:text-right">
         <FeatureBox.Header
@@ -92,7 +108,7 @@ export default function FeatureBox({
         desktopImageUrl={desktopImageUrl}
         mobileImageUrl={mobileImageUrl}
       />
-    </article>
+    </motion.article>
   );
 }
 

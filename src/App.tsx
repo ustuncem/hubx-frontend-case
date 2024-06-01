@@ -4,9 +4,9 @@ import { Container, FeatureBox } from '#components';
 
 export function App() {
   return (
-    <AnimatePresence>
-      <main className="h-full">
-        <Container>
+    <main className="h-full">
+      <Container>
+        <AnimatePresence>
           <FeatureBox
             title="Scan with Ease"
             actionTitle="Document Scanner"
@@ -16,8 +16,8 @@ export function App() {
             mobileImageUrl="/img/document-scanner.png"
             alt="Document Scanner"
           />
-        </Container>
-      </main>
-    </AnimatePresence>
+        </AnimatePresence>
+      </Container>
+    </main>
   );
 }

@@ -16,7 +16,7 @@ interface Props {
 export default function Container({ className, children }: Props) {
   return (
     <section
-      className={`mx-auto flex h-full w-full max-w-[1200px] flex-col items-center justify-center px-4 ${className}`}
+      className={`mx-auto flex w-full max-w-[1200px] flex-col items-center justify-center px-4 ${className}`}
     >
       {children}
     </section>

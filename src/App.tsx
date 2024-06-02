@@ -17,7 +17,7 @@ export function App() {
   };
 
   return (
-    <main className="flex h-full flex-col justify-center">
+    <main className="flex h-full flex-col justify-center bg-gray-100">
       <Container>
         {activeFeature === DOCUMENT_SCANNER && (
           <FeatureBox
@@ -82,7 +82,7 @@ export function App() {
       </Container>
       <section
         id="navigation-tabs"
-        className="flex justify-between overflow-x-auto"
+        className="no-scrollbar flex snap-x justify-between overflow-x-auto"
       >
         <FeatureNavigationButton
           svgPath="/svg/document-scanner.svg"

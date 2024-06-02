@@ -12,3 +12,30 @@
     @apply h-full min-h-svh bg-white font-primary text-primary;
   }
 }
+
+@layer components {
+  .animate-feature-svg path {
+    fill: theme('colors.action');
+    transition: fill 0.135ms ease-in-out;
+  }
+
+  .animate-feature-svg circle {
+    transform-origin: center;
+    rotate: 270deg;
+
+    stroke: theme('colors.action');
+    stroke-dasharray: 173;
+    stroke-dashoffset: 173;
+    stroke-opacity: 1;
+    stroke-width: 1px;
+
+    animation: dash 0.5s linear;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

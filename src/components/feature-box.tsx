@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { motion } from 'framer-motion';
 
 import Link, { LinkProps } from './link';
@@ -52,23 +54,31 @@ const FeatureBoxImage = ({
   mobileImageUrl,
   desktopImageUrl,
   alt,
-}: FeatureBoxImageProps) => (
-  <motion.picture
-    initial={{ y: '100%' }}
-    animate={{ y: 0 }}
-    transition={{
-      duration: ANIMATION_DURATION,
-      delay: ANIMATION_DURATION - 0.2,
-    }}
-  >
-    <source srcSet={desktopImageUrl} media="(min-width: 1024px)" />
-    <img
-      className="w-auto lg:order-1 lg:justify-self-start"
-      alt={alt}
-      src={mobileImageUrl}
-    />
-  </motion.picture>
-);
+}: FeatureBoxImageProps) => {
+  const [loaded, setLoaded] = useState(false);
+
+  const handleLoading = () => setLoaded((prev) => !prev);
+
+  return (
+    <motion.picture
+      initial={{ y: '100%' }}
+      animate={{ y: 0 }}
+      transition={{
+        duration: ANIMATION_DURATION,
+        delay: ANIMATION_DURATION - 0.2,
+      }}
+      onLoad={handleLoading}
+      className={`transition-opacity ${loaded ? 'h-auto' : 'h-[246px] lg:h-[483px]'}`}
+    >
+      <source srcSet={desktopImageUrl} media="(min-width: 1024px)" />
+      <img
+        className="w-auto lg:order-1 lg:justify-self-start"
+        alt={alt}
+        src={mobileImageUrl}
+      />
+    </motion.picture>
+  );
+};
 
 /**
  * FeatureBox component to display a feature with a header, image, and action button.
@@ -90,6 +100,7 @@ export default function FeatureBox({
     <motion.article
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{
         duration: ANIMATION_DURATION,
       }}

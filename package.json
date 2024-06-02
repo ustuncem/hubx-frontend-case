@@ -12,7 +12,7 @@
     "format:stylelint": "npm run lint:stylelint -- --fix",
     "lint": "npm run lint:eslint && npm run lint:typescript && npm run lint:stylelint",
     "lint:eslint": "eslint --max-warnings=0 --ignore-path .gitignore --ext .js,.ts,.tsx .",
-    "lint:stylelint": "stylelint --ignore-path .gitignore '**/*.css'",
+    "lint:stylelint": "stylelint --ignore-path .gitignore **/*.css",
     "lint:typescript": "tsc --noEmit",
     "prepare": "husky"
   },

@@ -19,7 +19,7 @@ export function App() {
   };
 
   return (
-    <main className="h-full">
+    <main className="flex h-full flex-col justify-center">
       <Container>
         <AnimatePresence>
           <FeatureBox

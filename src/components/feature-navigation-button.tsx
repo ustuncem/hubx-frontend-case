@@ -12,12 +12,38 @@ interface FeatureNavigationButtonProps extends FeatureNavigationButtonSvgProps {
   onClick: () => void;
 }
 
+/**
+ * FeatureNavigationButtonSvg component renders an SVG image using the given source.
+ *
+ * @param {FeatureNavigationButtonSvgProps} props - The props for the SVG component.
+ * @returns {JSX.Element} The rendered ReactSVG component.
+ */
 const FeatureNavigationButtonSvg = ({
   svgPath,
 }: FeatureNavigationButtonSvgProps) => {
   return <ReactSVG src={svgPath} />;
 };
 
+/**
+ * FeatureNavigationButton component renders a button with an SVG and a label,
+ * handles click events, and smoothly scrolls into view.
+ *
+ * @param {FeatureNavigationButtonProps} props - The props for the button component.
+ * @param {string} props.buttonLabel - The label for the button.
+ * @param {string} props.svgPath - The path to the SVG file.
+ * @param {boolean} props.isActive - Flag indicating if the button is active.
+ * @param {() => void} props.onClick - The function to call when the button is clicked.
+ *
+ * @returns {JSX.Element} The rendered button component.
+ *
+ * @example
+ * <FeatureNavigationButton
+ *   buttonLabel="Feature 1"
+ *   svgPath="/path/to/icon.svg"
+ *   isActive={true}
+ *   onClick={() => console.log('Button clicked')}
+ * />
+ */
 export default function FeatureNavigationButton({
   buttonLabel,
   svgPath,

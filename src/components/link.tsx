@@ -3,6 +3,16 @@ export interface LinkProps {
   linkTitle: string;
 }
 
+/**
+ * Link component renders an anchor tag with styled classes and hover/focus effects.
+ *
+ * @param {LinkProps} props - The props for the Link component.
+ *
+ * @returns {JSX.Element} The rendered link component.
+ *
+ * @example
+ * <Link linkUrl="https://example.com" linkTitle="Example Link" />
+ */
 export default function Link({ linkUrl, linkTitle }: LinkProps) {
   return (
     <a

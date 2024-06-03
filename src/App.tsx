@@ -12,7 +12,7 @@ import {
 } from '#static';
 
 export function App() {
-  const [activeFeature, setActiveFeature] = useState(EXPORT_SHARE);
+  const [activeFeature, setActiveFeature] = useState(DOCUMENT_SCANNER);
 
   const handleButtonClick = (clickedFeature: string) => () => {
     setActiveFeature(clickedFeature);

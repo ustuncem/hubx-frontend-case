@@ -39,9 +39,11 @@ const FeatureBoxHeader = ({
   description,
 }: FeatureBoxHeaderProps) => (
   <>
-    <p className="mb-6 font-bold uppercase text-action">{actionTitle}</p>
-    <h1 className="mb-6 text-3xl font-bold">{title}</h1>
-    <p className="mb-8 text-sm leading-7 lg:text-xl lg:leading-8">
+    <p className="mb-3 font-bold uppercase text-action lg:mb-6">
+      {actionTitle}
+    </p>
+    <h1 className="mb-3 text-3xl font-bold lg:mb-6">{title}</h1>
+    <p className="mb-3 text-[13px] leading-7 lg:mb-8 lg:text-xl lg:leading-8">
       {description}
     </p>
   </>

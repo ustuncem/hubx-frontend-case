@@ -9,7 +9,7 @@
   }
 
   body {
-    @apply h-full min-h-svh bg-white font-primary text-primary;
+    @apply h-full min-h-dvh bg-white font-primary text-primary;
   }
 }
 

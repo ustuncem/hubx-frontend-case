@@ -25,6 +25,7 @@ interface FeatureBoxProps
   linkTitle?: string;
   className?: string;
   animateAfter?: (parentAnimationDuration: number) => ReactNode;
+  isActive: boolean;
 }
 
 /**
@@ -63,7 +64,7 @@ const FeatureBoxImage = ({
   return (
     <picture
       onLoad={handleLoading}
-      className={`${loaded ? 'h-auto' : 'h-[246px] lg:h-[483px]'}`}
+      className={`${loaded ? 'h-auto' : 'h-[246px] lg:h-[600px]'}`}
     >
       <source srcSet={desktopImageUrl} media="(min-width: 1024px)" />
       <img
@@ -91,6 +92,7 @@ export default function FeatureBox({
   alt,
   className = '',
   animateAfter,
+  isActive,
 }: FeatureBoxProps) {
   return (
     <motion.article
@@ -100,7 +102,7 @@ export default function FeatureBox({
       transition={{
         duration: ANIMATION_DURATION,
       }}
-      className={`grid w-full grid-cols-1 place-items-center overflow-hidden lg:grid-cols-2 ${className}`}
+      className={`w-full grid-cols-1 place-items-center overflow-hidden lg:grid-cols-2 ${className} ${isActive ? 'grid' : 'hidden'}`}
     >
       <div className="text-center lg:order-2 lg:text-right">
         <FeatureBox.Header

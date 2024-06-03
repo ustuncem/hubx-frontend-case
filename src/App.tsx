@@ -12,7 +12,7 @@ import {
 } from '#static';
 
 export function App() {
-  const [activeFeature, setActiveFeature] = useState(DOCUMENT_SCANNER);
+  const [activeFeature, setActiveFeature] = useState(EXPORT_SHARE);
 
   const handleButtonClick = (clickedFeature: string) => () => {
     setActiveFeature(clickedFeature);
@@ -97,6 +97,42 @@ export function App() {
     [],
   );
 
+  const handleExportShareAnimation = useCallback(
+    (duration: number) => (
+      <div className="absolute inset-0">
+        <motion.img
+          initial={{ y: '200%' }}
+          animate={{ y: '0' }}
+          transition={{ duration: duration - 0.1, delay: duration + 0.5 }}
+          className="absolute -left-12 bottom-6"
+          src="/img/export-share-arrow.png"
+        />
+        <motion.img
+          initial={{ y: '200%', x: '-50%' }}
+          animate={{ y: '0' }}
+          transition={{ duration: duration - 0.2, delay: duration + 0.7 }}
+          className="absolute bottom-12 left-6 w-24 lg:w-auto"
+          src="/img/export-share-pdf.png"
+        />
+        <motion.img
+          initial={{ y: '200%', x: '-50%' }}
+          animate={{ y: '0' }}
+          transition={{ duration: duration - 0.2, delay: duration + 1 }}
+          className="absolute bottom-20 left-1/2 w-20 lg:w-auto"
+          src="/img/export-share-jpg.png"
+        />
+        <motion.img
+          initial={{ y: '200%', x: '50%' }}
+          animate={{ y: '0' }}
+          transition={{ duration: duration - 0.2, delay: duration + 1.3 }}
+          className="absolute bottom-12 right-6 w-24 lg:w-auto"
+          src="/img/export-share-txt.png"
+        />
+      </div>
+    ),
+    [],
+  );
+
   return (
     <main className="flex h-full flex-col justify-center bg-gray-100">
       <Container>
@@ -162,6 +198,11 @@ export function App() {
           isActive={activeFeature === ADVANCED_FILTERS}
         />
         <FeatureBox
+          key={
+            activeFeature === EXPORT_SHARE
+              ? EXPORT_SHARE
+              : `inactive-${EXPORT_SHARE}`
+          }
           title="Export & Share"
           actionTitle="All-Round Conversion"
           description="Export your scans as PDF,JPG,ZIP,TXT and Word."
@@ -169,6 +210,7 @@ export function App() {
           desktopImageUrl="/img/export-share-lg.png"
           mobileImageUrl="/img/export-share.png"
           alt="Export & Share"
+          animateAfter={handleExportShareAnimation}
           isActive={activeFeature === EXPORT_SHARE}
         />
       </Container>

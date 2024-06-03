@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { motion } from 'framer-motion';
+
 import { Container, FeatureBox, FeatureNavigationButton } from '#components';
 import {
   DOCUMENT_SCANNER,
@@ -10,7 +12,7 @@ import {
 } from '#static';
 
 export function App() {
-  const [activeFeature, setActiveFeature] = useState(DOCUMENT_SCANNER);
+  const [activeFeature, setActiveFeature] = useState(BATCH_SCANNING);
 
   const handleButtonClick = (clickedFeature: string) => () => {
     setActiveFeature(clickedFeature);
@@ -41,6 +43,24 @@ export function App() {
             desktopImageUrl="/img/signature-stamp-lg.png"
             mobileImageUrl="/img/signature-stamp.png"
             alt="Sign & Stamp"
+            animateAfter={(duration) => (
+              <>
+                <motion.img
+                  initial={{ scale: 0, x: '50%', y: '-50%' }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: duration, delay: duration + 0.2 }}
+                  src="/img/signature-stamp-left.png"
+                  className="absolute -left-1/2 top-2/3 w-36 lg:w-auto"
+                />
+                <motion.img
+                  initial={{ scale: 0, x: '-50%' }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: duration, delay: duration + 0.5 }}
+                  src="/img/signature-stamp-right.png"
+                  className="absolute -right-1/2 top-28 w-36 lg:top-36 lg:w-auto"
+                />
+              </>
+            )}
           />
         )}
         {activeFeature === BATCH_SCANNING && (
@@ -53,6 +73,17 @@ export function App() {
             desktopImageUrl="/img/batch-scanning-lg.png"
             mobileImageUrl="/img/batch-scanning.png"
             alt="Batch Scanning"
+            animateAfter={(duration) => (
+              <>
+                <motion.img
+                  initial={{ scale: 0, x: '50%', y: '-50%' }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: duration, delay: duration + 0.2 }}
+                  src="/img/signature-stamp-left.png"
+                  className="absolute -left-1/2 top-2/3 w-36 lg:w-auto"
+                />
+              </>
+            )}
           />
         )}
         {activeFeature === ADVANCED_FILTERS && (

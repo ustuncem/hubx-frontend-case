@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { motion } from 'framer-motion';
 
@@ -24,6 +24,7 @@ interface FeatureBoxProps
     Omit<LinkProps, 'linkTitle'> {
   linkTitle?: string;
   className?: string;
+  animateAfter?: (parentAnimationDuration: number) => ReactNode;
 }
 
 /**
@@ -60,15 +61,9 @@ const FeatureBoxImage = ({
   const handleLoading = () => setLoaded((prev) => !prev);
 
   return (
-    <motion.picture
-      initial={{ y: '100%' }}
-      animate={{ y: 0 }}
-      transition={{
-        duration: ANIMATION_DURATION,
-        delay: ANIMATION_DURATION - 0.2,
-      }}
+    <picture
       onLoad={handleLoading}
-      className={`transition-opacity ${loaded ? 'h-auto' : 'h-[246px] lg:h-[483px]'}`}
+      className={`${loaded ? 'h-auto' : 'h-[246px] lg:h-[483px]'}`}
     >
       <source srcSet={desktopImageUrl} media="(min-width: 1024px)" />
       <img
@@ -76,7 +71,7 @@ const FeatureBoxImage = ({
         alt={alt}
         src={mobileImageUrl}
       />
-    </motion.picture>
+    </picture>
   );
 };
 
@@ -95,6 +90,7 @@ export default function FeatureBox({
   mobileImageUrl,
   alt,
   className = '',
+  animateAfter,
 }: FeatureBoxProps) {
   return (
     <motion.article
@@ -104,7 +100,7 @@ export default function FeatureBox({
       transition={{
         duration: ANIMATION_DURATION,
       }}
-      className={`grid grid-cols-1 place-items-center overflow-hidden lg:grid-cols-2 ${className}`}
+      className={`grid w-full grid-cols-1 place-items-center overflow-hidden lg:grid-cols-2 ${className}`}
     >
       <div className="text-center lg:order-2 lg:text-right">
         <FeatureBox.Header
@@ -114,11 +110,22 @@ export default function FeatureBox({
         />
         <FeatureBox.ActionButton linkTitle={linkTitle} linkUrl={linkUrl} />
       </div>
-      <FeatureBox.Image
-        alt={alt}
-        desktopImageUrl={desktopImageUrl}
-        mobileImageUrl={mobileImageUrl}
-      />
+      <motion.div
+        className="relative"
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        transition={{
+          duration: ANIMATION_DURATION,
+          delay: ANIMATION_DURATION - 0.2,
+        }}
+      >
+        <FeatureBox.Image
+          alt={alt}
+          desktopImageUrl={desktopImageUrl}
+          mobileImageUrl={mobileImageUrl}
+        />
+        {animateAfter && animateAfter(ANIMATION_DURATION)}
+      </motion.div>
     </motion.article>
   );
 }

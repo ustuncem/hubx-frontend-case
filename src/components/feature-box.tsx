@@ -18,13 +18,13 @@ interface FeatureBoxImageProps {
   alt: string;
 }
 
-interface FeatureBoxProps
+export interface FeatureBoxProps
   extends FeatureBoxHeaderProps,
     FeatureBoxImageProps,
     Omit<LinkProps, 'linkTitle'> {
   linkTitle?: string;
   className?: string;
-  animateAfter?: (parentAnimationDuration: number) => ReactNode;
+  animateAfter?: ((parentAnimationDuration: number) => ReactNode) | undefined;
   isActive: boolean;
 }
 
